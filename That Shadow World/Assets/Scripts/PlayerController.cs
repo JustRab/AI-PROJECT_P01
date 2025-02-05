@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         }    
     }
 
-    void TryToShoot()
+    public void TryToShoot()
     {
         // Check if the "Attack" animation is currently playing
         if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
