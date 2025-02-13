@@ -65,6 +65,6 @@ public class PlayerController : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.linearVelocity = transform.forward * bulletSpeed; 
+        rb.linearVelocity = transform.forward * bulletSpeed;
     }
 }

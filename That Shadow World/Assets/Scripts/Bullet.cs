@@ -4,22 +4,23 @@ public class Bullet : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Bullet collided with: " + other.gameObject.name);
+
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealth>().TakeDamage(10);
-            Debug.Log("Player Hit");
+            Debug.Log("Player Hit!");
+            other.GetComponent<PlayerHealth>()?.TakeDamage(10);
             Destroy(gameObject);
         }
-        if(other.CompareTag("Environment"))
+        else if (other.CompareTag("Environment"))
         {
+            Debug.Log("Bullet hit the environment!");
             Destroy(gameObject);
         }
-
     }
 
-    // Destroy after 2 seconds
     void Start()
     {
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 2f); // Bullet destroys itself after 2 seconds
     }
 }
