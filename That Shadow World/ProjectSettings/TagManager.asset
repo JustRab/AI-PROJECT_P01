@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Environment
+  - Enemy
+  - Obstacles
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Player
   - Enemy
   - Environment
-  - 
+  - Obstacles
   - 
   - 
   - 

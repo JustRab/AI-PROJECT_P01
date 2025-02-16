@@ -1,18 +1,45 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Bullet collided with: " + other.gameObject.name);
+    public int damageAmount = 10;
 
-        if (other.CompareTag("Player"))
+    void OnTriggerEnter(Collider other)
+    { 
+        // If the bullet hits an enemy, determine which type it is.
+        if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Player Hit!");
-            other.GetComponent<PlayerHealth>()?.TakeDamage(10);
-            Destroy(gameObject);
+            Debug.Log("Enemy Hit!");
+
+            // Check for TurretEnemy first.
+            TurretEnemy turret = other.GetComponent<TurretEnemy>();
+            if (turret != null)
+            {
+                turret.TakeDamage(damageAmount);
+                Destroy(gameObject);
+                return;
+            }
+
+            // Check for HeavyEnemy next.
+            HeavyEnemy heavy = other.GetComponent<HeavyEnemy>();
+            if (heavy != null)
+            {
+                heavy.TakeDamage(damageAmount);
+                Destroy(gameObject);
+                return;
+            }
+
+            // Check for FleeEnemy.
+             FleeEnemy flee = other.GetComponent<FleeEnemy>();
+             if (flee != null)
+             {
+                 flee.TakeDamage(damageAmount);
+                 Destroy(gameObject);
+                 return;
+             }
         }
-        else if (other.CompareTag("Environment"))
+        // If the bullet hits an object tagged as Environment, destroy it.
+        else if (other.CompareTag("Environment") || other.CompareTag("Obstacles"))
         {
             Debug.Log("Bullet hit the environment!");
             Destroy(gameObject);
