@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
         {
             rend.material.color = Color.red;
         }
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         // Vuelve a asignar el color original a cada renderer
         for (int i = 0; i < enemyRenderers.Length; i++)
         {
